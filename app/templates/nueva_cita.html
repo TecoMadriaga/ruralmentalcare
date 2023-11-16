@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Agendar Cita con {{ profesional.usuario.first_name }} {{ profesional.usuario.last_name }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agendar Cita</button>
+  </form>
+{% endblock %}

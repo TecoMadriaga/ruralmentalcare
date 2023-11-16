@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Recursos Educativos</h2>
+  <ul>
+    {% for recurso in recursos %}
+      <li>
+        <strong>{{ recurso.titulo }}</strong> - <a href="{{ recurso.enlace }}">Más información</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ profesional.usuario.first_name }} {{ profesional.usuario.last_name }}</h2>
+  <p>Especialidad: {{ profesional.especialidad }}</p>
+  <p>Biografía: {{ profesional.biografia }}</p>
+  <p>Calificación Promedio: {{ profesional.calificacion_promedio }}</p>
+  <a href="{% url 'nueva_cita' profesional.pk %}">Agendar Cita</a>
+{% endblock %}
