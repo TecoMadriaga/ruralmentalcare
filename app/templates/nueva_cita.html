@@ -1,10 +1,32 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Nueva Cita{% endblock %}
 
 {% block content %}
-  <h2>Agendar Cita con {{ profesional.usuario.first_name }} {{ profesional.usuario.last_name }}</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Agendar Cita</button>
-  </form>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Agendar Nueva Cita</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Formulario para Agendar Cita -->
+            <form method="post">
+                {% csrf_token %}
+                <!-- Suponiendo que tienes un formulario llamado form_cita -->
+                <div class="mb-3">
+                    <label for="profesional" class="form-label">Profesional</label>
+                    <!-- Campo para seleccionar profesional, asumiendo que el formulario lo proporciona -->
+                    {{ form_cita.profesional }}
+                </div>
+                <div class="mb-3">
+                    <label for="fecha_hora" class="form-label">Fecha y Hora</label>
+                    <!-- Campo para seleccionar fecha y hora de la cita -->
+                    {{ form_cita.fecha_hora }}
+                </div>
+                <!-- Otros campos necesarios para la cita -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Agendar Cita</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

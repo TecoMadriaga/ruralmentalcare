@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Profesionales Disponibles</h2>
-  <ul>
-    {% for profesional in profesionales %}
-      <li>
-        <a href="{% url 'detalle_profesional' profesional.pk %}">
-          {{ profesional.usuario.first_name }} {{ profesional.usuario.last_name }} - Especialidad: {{ profesional.especialidad }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
+  <div class="container">
+    <h2>Profesionales Disponibles</h2>
+    <ul>
+      {% for profesional in profesionales %}
+        <li>
+          <a href="{% url 'detalle_profesional' profesional.pk %}">
+            {{ profesional.usuario.first_name }} {{ profesional.usuario.last_name }} - Especialidad: {{ profesional.especialidad }}
+          </a>
+        </li>
+      {% empty %}
+          <li>No hay profesionales disponibles</li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

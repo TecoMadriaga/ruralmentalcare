@@ -1,12 +1,23 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <h2>Recursos Educativos</h2>
-  <ul>
+{% extends "base.html" %} {% block content %}
+{% load static %} 
+<div class="container">
+      <h1 class="text-center mb-4">Recursos Educativos sobre Salud Mental</h1>
+    <p class="text-center mb-4">Explora nuestra colección de materiales para informarte y educarte sobre diversas temáticas relacionadas con la salud mental.</p>
+    <div class="row"></div>
     {% for recurso in recursos %}
-      <li>
-        <strong>{{ recurso.titulo }}</strong> - <a href="{{ recurso.enlace }}">Más información</a>
-      </li>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+          <img src="{% static 'logo.png' %}" class="card-img-top" alt="Recurso 1">
+          <div class="card-body">
+              <h5 class="card-title">{{ recurso.titulo }}</h5>
+              <p class="card-text">{{ recurso.descripcion }}</p>
+              <a href="{{ recurso.enlace }}" class="btn btn-primary">Ver Online</a>
+          </div>
+      </div>
+    </div>
+    {% empty %}
+    <h3>No hay recursos disponibles</h3>
     {% endfor %}
   </ul>
+</div>
 {% endblock %}

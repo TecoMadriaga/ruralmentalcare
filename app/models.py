@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django import forms
 
 # Modelo para usuarios (pacientes)
 class Paciente(models.Model):
@@ -19,6 +20,12 @@ class Profesional(models.Model):
     telefono = models.CharField(max_length=15)
     biografia = models.TextField()
     calificacion_promedio = models.FloatField(default=0.0)
+
+    def __str__(self):
+        return self.usuario.username
+        
+class Admin(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.usuario.username
@@ -56,3 +63,20 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"Feedback de {self.paciente.usuario.username} sobre {self.profesional.usuario.username}"
+
+class CitaForm(forms.ModelForm):
+    class Meta:
+        model = Cita
+        fields = ('fecha_hora_inicio', 'fecha_hora_fin', 'estado', 'resumen')
+        labels = {
+            'fecha_hora_inicio': 'Fecha y hora de inicio',
+            'fecha_hora_fin': 'Fecha y hora de fin',
+            'estado': 'Estado',
+            'resumen': 'Resumen'
+        }
+        widgets = {
+            'fecha_hora_inicio': forms.DateTimeInput(attrs={'class': 'form-control'}),
+            'fecha_hora_fin': forms.DateTimeInput(attrs={'class': 'form-control'}),
+            'estado': forms.TextInput(attrs={'class': 'form-control'}),
+            'resumen': forms.Textarea(attrs={'class': 'form-control'})
+        }

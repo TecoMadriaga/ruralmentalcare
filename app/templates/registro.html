@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="container text-center" style="width:80%">
+    <h1>Registro</h1>
+
+    <form action="/login" method="post">
+        {% csrf_token %}
+        <input class="form-control form-control-lg text-center mb-2" type="text"     placeholder="Nombre de Usuario"  name="txtusu"  required/>
+        <input class="form-control form-control-lg text-center mb-2" type="password" placeholder="Contraseña"         name="txtpas"  required/>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Registrarse</button>
+    </form>
+    <br/>
+{% endblock %}
