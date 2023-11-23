@@ -48,7 +48,8 @@ class RecursoEducativo(models.Model):
     descripcion = models.TextField()
     tipo = models.CharField(max_length=50)
     enlace = models.URLField()
-    fecha_publicacion = models.DateField()
+    fecha_publicacion = models.DateField(null=True, blank=True)
+    imagen = models.URLField()
 
     def __str__(self):
         return self.titulo

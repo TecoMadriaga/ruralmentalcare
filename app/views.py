@@ -42,7 +42,6 @@ def detalle_profesional(request, pk):
 #     return render(request, 'nueva_cita.html', {'form': form, 'profesional': profesional})
 def nueva_cita(request):
     return render(request, 'nueva_cita.html')
-
 # Vista para listar recursos educativos
 def lista_recursos(request):
     recursos = RecursoEducativo.objects.all()

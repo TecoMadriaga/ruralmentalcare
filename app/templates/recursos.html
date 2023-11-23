@@ -3,21 +3,26 @@
 <div class="container">
       <h1 class="text-center mb-4">Recursos Educativos sobre Salud Mental</h1>
     <p class="text-center mb-4">Explora nuestra colección de materiales para informarte y educarte sobre diversas temáticas relacionadas con la salud mental.</p>
-    <div class="row"></div>
+    <div class="row">
     {% for recurso in recursos %}
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-          <img src="{% static 'logo.png' %}" class="card-img-top" alt="Recurso 1">
-          <div class="card-body">
-              <h5 class="card-title">{{ recurso.titulo }}</h5>
-              <p class="card-text">{{ recurso.descripcion }}</p>
-              <a href="{{ recurso.enlace }}" class="btn btn-primary">Ver Online</a>
-          </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if recurso.imagen %}
+            <img src="{{ recurso.imagen }}" class="card-img-top" alt="Imagen de {{ recurso.titulo }}">
+            {% else %}
+            <img src="{% static 'logo.png' %}" class="card-img-top" alt="...">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ recurso.titulo }}</h5>
+                <p class="card-text">{{ recurso.descripcion }}</p>
+                <a href="{{ recurso.enlace }}" class="btn btn-primary">Ver Online</a>
+            </div>
+        </div>
       </div>
-    </div>
     {% empty %}
     <h3>No hay recursos disponibles</h3>
     {% endfor %}
+  </div>
   </ul>
 </div>
 {% endblock %}
