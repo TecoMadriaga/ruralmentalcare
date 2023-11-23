@@ -22,6 +22,13 @@ class Profesional(models.Model):
 
     def __str__(self):
         return self.usuario.username
+    
+# Modelo para admin
+class Admin(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.usuario.username
 
 # Modelo para citas
 class Cita(models.Model):
