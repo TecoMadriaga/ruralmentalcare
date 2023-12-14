@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %} - RuralMentalCare</title>
-    {% comment %}
-        TODO: Agregar los archivos estáticos de CSS y JS
-    {% endcomment %}
+    {% load static %}
+    {% include 'head.html' %}
 </head>
 <body>
+    {% include 'header.html' %}
     {% block content %}{% endblock %}
+    {% include 'footer.html' %}
 </body>
 </html>

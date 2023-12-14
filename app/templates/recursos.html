@@ -1,12 +1,42 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
+{% block title %}
+  Recursos Educativos
+{% endblock %}
+{% load static %}
 {% block content %}
-  <h2>Recursos Educativos</h2>
-  <ul>
-    {% for recurso in recursos %}
-      <li>
-        <strong>{{ recurso.titulo }}</strong> - <a href="{{ recurso.enlace }}">Más información</a>
-      </li>
-    {% endfor %}
-  </ul>
+  <main id="main">
+    <section id="resources" class="doctors">
+      <div class="containersection-bg mt-5">
+        <div class="container">
+          <div class="section-title pt-5">
+            <h2>Recursos Educativos</h2>
+            <p>Encuentra recursos educativos sobre salud mental</p>
+          </div>
+          <div class="row">
+            {% for recurso in recursos %}
+              <div class="col-lg-6">
+                <div class="member d-flex align-items-start">
+                  <div class="pic">
+                    <a href="{{recurso.enlace}}" target="_blank"><img src="{{ recurso.imagen }}" class="img-fluid" alt="Imagen de {{ recurso.titulo }}" width="200" height="200" style="aspect-ratio: 1 / 1" /></a>
+                  </div>
+                  <div class="member-info">
+                    <h4>{{ recurso.titulo }}</h4>
+                    <p style="color: gray; font-size: 10px; margin-bottom: 5px;">{{recurso.tipo}}</p>
+                    <span style="font-size: 12px;">{{ recurso.descripcion }}</span>
+                    <div class="social">
+                      <a href="{{ recurso.enlace }}" target="_blank"><i class="bi bi-link"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% empty %}
+              <p class="text-center">
+                <b>No hay recursos disponibles</b>
+              </p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 {% endblock %}

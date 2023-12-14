@@ -1,0 +1,106 @@
+
+{% load static %}
+<footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>RuralMentalCare</h3>
+            <p>
+              Av. San Juan #5772 <br>
+              Machalí, Ohiggins<br>
+              Chile <br><br>
+              <strong>Teléfono:</strong> +56 9 5554 8855<br>
+              <strong>Email:</strong> contacto@ruralmentalcare.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Enlaces útiles</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/">Inicio</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'registro' %}">Registro</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'lista_profesionales' %}">Profesionales</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'lista_recursos' %}">Recursos</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; <strong><span>RuralMentalCare</span></strong>. Todos los derechos reservados.
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+  // Saltar SweetAlert antes de cerra sesión
+  const logout = document.querySelector('.logout')
+  logout.addEventListener('click', (e) => {
+    e.preventDefault()
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres cerrar sesión?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Cerrar Sesión'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "{% url 'user_logout' %}"
+      }
+    })
+  })
+</script>
+{% if info %}
+  <script>
+    // Mostrar SweetAlert Toast con mensaje de éxito
+    Swal.fire({
+      icon: 'success',
+      title: '{{ mensaje }}',
+      toast: true,
+      position: 'top-end',
+      padding: '1rem',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+    })
+  </script>
+{% endif %}
+{% if group_error or error %}
+<script>
+  // Mostrar SweetAlert Toast con mensaje de éxito
+  Swal.fire({
+    icon: 'error',
+    title: '{{ group_error }}',
+    toast: true,
+    position: 'top-end',
+    padding: '1rem',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true
+  })
+</script>
+{% endif %}
